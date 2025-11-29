@@ -2,39 +2,38 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
 <title>Happy Birthday Farah 💖</title>
 <style>
   body {
-    background: linear-gradient(135deg, #ffd6e8, #fff, #ffe6f2);
+    background: linear-gradient(180deg, #ffe6f2, #fff);
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 100vh;
+    min-height: 100vh;
     font-family: 'Poppins', sans-serif;
-    overflow: hidden;
     text-align: center;
+    margin: 0;
+    overflow: hidden;
   }
 
   h1 {
     color: #ff4d88;
-    font-size: 2em;
-    margin-bottom: 10px;
-    text-shadow: 0 0 15px rgba(255, 77, 136, 0.6);
-    animation: fadeIn 1.5s ease forwards;
+    font-size: 1.6rem;
+    margin: 10px;
+    text-shadow: 0 0 10px rgba(255, 77, 136, 0.5);
   }
 
   #countdown {
-    font-size: 1.5em;
+    font-size: 1.1rem;
     color: #333;
-    margin-bottom: 30px;
-    animation: fadeIn 2s ease forwards;
+    margin-bottom: 25px;
   }
 
   .gift-box {
-    width: 120px;
-    height: 120px;
+    width: 110px;
+    height: 110px;
     background: #ff4d88;
     position: relative;
     border-radius: 12px;
@@ -44,16 +43,16 @@
     z-index: 10;
   }
 
-  .gift-box:hover {
-    transform: scale(1.1) rotate(2deg);
+  .gift-box:active {
+    transform: scale(0.95);
   }
 
   .gift-lid {
-    width: 140px;
-    height: 30px;
+    width: 130px;
+    height: 25px;
     background: #ff80a8;
     position: absolute;
-    top: -25px;
+    top: -22px;
     left: -10px;
     border-radius: 8px;
     animation: bounceLid 2s infinite ease-in-out;
@@ -61,12 +60,12 @@
 
   @keyframes bounceLid {
     0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-5px); }
+    50% { transform: translateY(-4px); }
   }
 
   .ribbon {
-    width: 20px;
-    height: 120px;
+    width: 18px;
+    height: 110px;
     background: #fff;
     position: absolute;
     left: 50%;
@@ -77,10 +76,10 @@
 
   #photo {
     display: none;
-    margin-top: 30px;
+    margin-top: 25px;
     border-radius: 20px;
-    max-width: 320px;
-    box-shadow: 0 8px 30px rgba(0,0,0,0.3);
+    max-width: 85vw;
+    box-shadow: 0 6px 25px rgba(0,0,0,0.3);
     animation: fadeIn 1.5s ease forwards;
     cursor: pointer;
   }
@@ -88,13 +87,11 @@
   #message {
     display: none;
     color: #ff4d88;
-    font-size: 1.4em;
-    margin-top: 25px;
+    font-size: 1.1rem;
+    margin: 25px 15px 0 15px;
     animation: fadeIn 2s ease forwards;
-    text-shadow: 0 0 20px rgba(255, 120, 160, 0.6);
-    width: 80%;
-    max-width: 400px;
-    line-height: 1.5;
+    text-shadow: 0 0 15px rgba(255, 90, 150, 0.4);
+    line-height: 1.6;
   }
 
   @keyframes fadeIn {
@@ -102,14 +99,15 @@
     to {opacity: 1; transform: scale(1);}
   }
 
-  /* Floating hearts */
+  /* Floating hearts for mobile */
   .heart {
     position: fixed;
     bottom: -10px;
     color: #ff4d88;
-    font-size: 20px;
+    font-size: 18px;
     animation: floatUp 6s linear infinite;
     opacity: 0.7;
+    pointer-events: none;
   }
 
   @keyframes floatUp {
@@ -119,8 +117,8 @@
 
   .sparkle {
     position: absolute;
-    width: 6px;
-    height: 6px;
+    width: 5px;
+    height: 5px;
     background: #fff;
     border-radius: 50%;
     animation: sparkleAnim 2s infinite ease-in-out;
@@ -171,7 +169,6 @@
     countdown.innerHTML = `${days}d ${hours}h ${mins}m ${secs}s`;
   }, 1000);
 
-  // Open gift box
   function openGift() {
     document.querySelector('.gift-box').style.display = 'none';
     document.getElementById('photo').style.display = 'block';
@@ -184,26 +181,23 @@
     heart.className = 'heart';
     heart.innerHTML = '💖';
     heart.style.left = Math.random() * 100 + 'vw';
-    heart.style.fontSize = (15 + Math.random() * 15) + 'px';
+    heart.style.fontSize = (14 + Math.random() * 10) + 'px';
     heart.style.animationDuration = (4 + Math.random() * 4) + 's';
     document.body.appendChild(heart);
     setTimeout(() => heart.remove(), 6000);
-  }, 500);
+  }, 600);
 
-  // Show message when image is clicked
   function showMessage() {
     const msg = document.getElementById('message');
     msg.style.display = 'block';
     msg.innerHTML = `
       🌸 My Dearest Farah 🌸<br><br>
-      Every time I look at you, I’m reminded how lucky I am. <br>
-      You’re not just my love — you’re my peace, my joy, and my heart. 💞<br><br>
-      I love you more than words could ever express,<br>
-      and I can’t wait to spend every birthday making you smile. 💋
+      You are my calm, my chaos, my favorite everything. 💞<br><br>
+      Every heartbeat whispers your name, and every moment with you feels like magic.<br>
+      I love you endlessly — today, tomorrow, and always. 💋
     `;
 
-    // Add sparkles
-    for (let i = 0; i < 20; i++) {
+    for (let i = 0; i < 15; i++) {
       const sparkle = document.createElement('div');
       sparkle.classList.add('sparkle');
       sparkle.style.left = Math.random() * window.innerWidth + 'px';
