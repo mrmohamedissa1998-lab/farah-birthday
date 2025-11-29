@@ -6,7 +6,7 @@
 <title>Happy Birthday Farah 💖</title>
 <style>
   body {
-    background: radial-gradient(circle at top, #ffd6e8, #ffe6f2, #fff);
+    background: linear-gradient(135deg, #ffd6e8, #fff, #ffe6f2);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -21,13 +21,15 @@
     color: #ff4d88;
     font-size: 2em;
     margin-bottom: 10px;
-    text-shadow: 0 0 10px rgba(255, 77, 136, 0.5);
+    text-shadow: 0 0 15px rgba(255, 77, 136, 0.6);
+    animation: fadeIn 1.5s ease forwards;
   }
 
   #countdown {
     font-size: 1.5em;
     color: #333;
     margin-bottom: 30px;
+    animation: fadeIn 2s ease forwards;
   }
 
   .gift-box {
@@ -35,15 +37,15 @@
     height: 120px;
     background: #ff4d88;
     position: relative;
-    border-radius: 10px;
+    border-radius: 12px;
     cursor: pointer;
-    box-shadow: 0 8px 20px rgba(255, 77, 136, 0.4);
-    transition: 0.3s;
+    box-shadow: 0 8px 25px rgba(255, 77, 136, 0.4);
+    transition: transform 0.3s ease;
     z-index: 10;
   }
 
   .gift-box:hover {
-    transform: scale(1.1);
+    transform: scale(1.1) rotate(2deg);
   }
 
   .gift-lid {
@@ -53,7 +55,13 @@
     position: absolute;
     top: -25px;
     left: -10px;
-    border-radius: 6px;
+    border-radius: 8px;
+    animation: bounceLid 2s infinite ease-in-out;
+  }
+
+  @keyframes bounceLid {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-5px); }
   }
 
   .ribbon {
@@ -74,15 +82,19 @@
     max-width: 320px;
     box-shadow: 0 8px 30px rgba(0,0,0,0.3);
     animation: fadeIn 1.5s ease forwards;
+    cursor: pointer;
   }
 
   #message {
-    display: false;
+    display: none;
     color: #ff4d88;
-    font-size: 1.5em;
-    margin-top: 20px;
+    font-size: 1.4em;
+    margin-top: 25px;
     animation: fadeIn 2s ease forwards;
-    text-shadow: 0 0 15px rgba(255, 90, 150, 0.5);
+    text-shadow: 0 0 20px rgba(255, 120, 160, 0.6);
+    width: 80%;
+    max-width: 400px;
+    line-height: 1.5;
   }
 
   @keyframes fadeIn {
@@ -104,6 +116,20 @@
     0% {transform: translateY(0) scale(1);}
     100% {transform: translateY(-100vh) scale(1.5); opacity: 0;}
   }
+
+  .sparkle {
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    background: #fff;
+    border-radius: 50%;
+    animation: sparkleAnim 2s infinite ease-in-out;
+  }
+
+  @keyframes sparkleAnim {
+    0%, 100% { opacity: 0; transform: scale(0); }
+    50% { opacity: 1; transform: scale(1.5); }
+  }
 </style>
 </head>
 <body>
@@ -118,8 +144,9 @@
   <div class="ribbon"></div>
 </div>
 
-<img id="photo" src="https://i.imgur.com/9AgLlFY.jpeg" alt="Farah's Birthday Surprise">
-<div id="message">Happy Birthday, my love 💞<br>You make every day feel special.</div>
+<img id="photo" src="https://i.imgur.com/9AgLlFY.jpeg" alt="Farah's Birthday Surprise" onclick="showMessage()">
+
+<div id="message"></div>
 
 <script>
   // Countdown Timer
@@ -144,15 +171,14 @@
     countdown.innerHTML = `${days}d ${hours}h ${mins}m ${secs}s`;
   }, 1000);
 
-  // Gift Box Click
+  // Open gift box
   function openGift() {
     document.querySelector('.gift-box').style.display = 'none';
     document.getElementById('photo').style.display = 'block';
-    document.getElementById('message').style.display = 'block';
     document.getElementById('bg-music').play();
   }
 
-  // Floating hearts generator
+  // Floating hearts
   setInterval(() => {
     const heart = document.createElement('div');
     heart.className = 'heart';
@@ -163,6 +189,30 @@
     document.body.appendChild(heart);
     setTimeout(() => heart.remove(), 6000);
   }, 500);
+
+  // Show message when image is clicked
+  function showMessage() {
+    const msg = document.getElementById('message');
+    msg.style.display = 'block';
+    msg.innerHTML = `
+      🌸 My Dearest Farah 🌸<br><br>
+      Every time I look at you, I’m reminded how lucky I am. <br>
+      You’re not just my love — you’re my peace, my joy, and my heart. 💞<br><br>
+      I love you more than words could ever express,<br>
+      and I can’t wait to spend every birthday making you smile. 💋
+    `;
+
+    // Add sparkles
+    for (let i = 0; i < 20; i++) {
+      const sparkle = document.createElement('div');
+      sparkle.classList.add('sparkle');
+      sparkle.style.left = Math.random() * window.innerWidth + 'px';
+      sparkle.style.top = Math.random() * window.innerHeight + 'px';
+      sparkle.style.animationDelay = Math.random() * 2 + 's';
+      document.body.appendChild(sparkle);
+      setTimeout(() => sparkle.remove(), 2000);
+    }
+  }
 </script>
 
 </body>
