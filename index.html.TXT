@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Happy Birthday Farah 💖</title>
+<style>
+  body {
+    background: radial-gradient(circle at top, #ffd6e8, #ffe6f2, #fff);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    font-family: 'Poppins', sans-serif;
+    overflow: hidden;
+    text-align: center;
+  }
+
+  h1 {
+    color: #ff4d88;
+    font-size: 2em;
+    margin-bottom: 10px;
+    text-shadow: 0 0 10px rgba(255, 77, 136, 0.5);
+  }
+
+  #countdown {
+    font-size: 1.5em;
+    color: #333;
+    margin-bottom: 30px;
+  }
+
+  .gift-box {
+    width: 120px;
+    height: 120px;
+    background: #ff4d88;
+    position: relative;
+    border-radius: 10px;
+    cursor: pointer;
+    box-shadow: 0 8px 20px rgba(255, 77, 136, 0.4);
+    transition: 0.3s;
+    z-index: 10;
+  }
+
+  .gift-box:hover {
+    transform: scale(1.1);
+  }
+
+  .gift-lid {
+    width: 140px;
+    height: 30px;
+    background: #ff80a8;
+    position: absolute;
+    top: -25px;
+    left: -10px;
+    border-radius: 6px;
+  }
+
+  .ribbon {
+    width: 20px;
+    height: 120px;
+    background: #fff;
+    position: absolute;
+    left: 50%;
+    top: 0;
+    transform: translateX(-50%);
+    border-radius: 4px;
+  }
+
+  #photo {
+    display: none;
+    margin-top: 30px;
+    border-radius: 20px;
+    max-width: 320px;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.3);
+    animation: fadeIn 1.5s ease forwards;
+  }
+
+  #message {
+    display: false;
+    color: #ff4d88;
+    font-size: 1.5em;
+    margin-top: 20px;
+    animation: fadeIn 2s ease forwards;
+    text-shadow: 0 0 15px rgba(255, 90, 150, 0.5);
+  }
+
+  @keyframes fadeIn {
+    from {opacity: 0; transform: scale(0.9);}
+    to {opacity: 1; transform: scale(1);}
+  }
+
+  /* Floating hearts */
+  .heart {
+    position: fixed;
+    bottom: -10px;
+    color: #ff4d88;
+    font-size: 20px;
+    animation: floatUp 6s linear infinite;
+    opacity: 0.7;
+  }
+
+  @keyframes floatUp {
+    0% {transform: translateY(0) scale(1);}
+    100% {transform: translateY(-100vh) scale(1.5); opacity: 0;}
+  }
+</style>
+</head>
+<body>
+
+<audio id="bg-music" src="https://cdn.pixabay.com/download/audio/2023/03/07/audio_3e1f4c89cb.mp3?filename=romantic-background-music-142504.mp3" loop></audio>
+
+<h1>Countdown to Farah’s Birthday 💖</h1>
+<div id="countdown"></div>
+
+<div class="gift-box" onclick="openGift()">
+  <div class="gift-lid"></div>
+  <div class="ribbon"></div>
+</div>
+
+<img id="photo" src="https://i.imgur.com/9AgLlFY.jpeg" alt="Farah's Birthday Surprise">
+<div id="message">Happy Birthday, my love 💞<br>You make every day feel special.</div>
+
+<script>
+  // Countdown Timer
+  const countdown = document.getElementById('countdown');
+  const targetDate = new Date("December 28, 2025 00:00:00").getTime();
+
+  const timer = setInterval(() => {
+    const now = new Date().getTime();
+    const distance = targetDate - now;
+
+    if (distance < 0) {
+      clearInterval(timer);
+      countdown.innerHTML = "🎉 Happy Birthday Farah! 🎂";
+      return;
+    }
+
+    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const mins = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    const secs = Math.floor((distance % (1000 * 60)) / 1000);
+
+    countdown.innerHTML = `${days}d ${hours}h ${mins}m ${secs}s`;
+  }, 1000);
+
+  // Gift Box Click
+  function openGift() {
+    document.querySelector('.gift-box').style.display = 'none';
+    document.getElementById('photo').style.display = 'block';
+    document.getElementById('message').style.display = 'block';
+    document.getElementById('bg-music').play();
+  }
+
+  // Floating hearts generator
+  setInterval(() => {
+    const heart = document.createElement('div');
+    heart.className = 'heart';
+    heart.innerHTML = '💖';
+    heart.style.left = Math.random() * 100 + 'vw';
+    heart.style.fontSize = (15 + Math.random() * 15) + 'px';
+    heart.style.animationDuration = (4 + Math.random() * 4) + 's';
+    document.body.appendChild(heart);
+    setTimeout(() => heart.remove(), 6000);
+  }, 500);
+</script>
+
+</body>
+</html>
